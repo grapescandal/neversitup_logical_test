@@ -2,7 +2,6 @@ package testing
 
 import (
 	"fmt"
-	"sort"
 	"strconv"
 )
 
@@ -64,24 +63,18 @@ func SortingCheck(input string) (isPass bool) {
 		inputInt = append(inputInt, intCharacter)
 	}
 
-	inputAscending := []int{}
-	inputAscending = append(inputAscending, inputInt...)
-	sort.SliceStable(inputAscending, func(i, j int) bool {
-		return input[i] < input[j]
-	})
-
 	ascNextIndexToCheck := 0
 	acsCounter := 0
-	for i := range inputAscending {
+	for i := range inputInt {
 
-		if i == len(inputAscending)-1 {
+		if i == len(inputInt)-1 {
 			break
 		}
 
-		if inputAscending[i]+1 == inputAscending[i+1] {
+		if inputInt[i]+1 == inputInt[i+1] {
 			acsCounter++
 			ascNextIndexToCheck = i + 1
-		} else if inputAscending[i]+1 != inputAscending[i+1] && i == ascNextIndexToCheck {
+		} else if inputInt[i]+1 != inputInt[i+1] && i == ascNextIndexToCheck {
 			acsCounter = 0
 			ascNextIndexToCheck = 0
 		}
@@ -92,24 +85,18 @@ func SortingCheck(input string) (isPass bool) {
 		}
 	}
 
-	inputDescending := []int{}
-	inputDescending = append(inputDescending, inputInt...)
-	sort.SliceStable(inputDescending, func(i, j int) bool {
-		return input[i] > input[j]
-	})
-
 	dscNextIndexToCheck := 0
 	dscCounter := 0
-	for i := range inputDescending {
+	for i := range inputInt {
 
-		if i == len(inputDescending)-1 {
+		if i == len(inputInt)-1 {
 			break
 		}
 
-		if inputDescending[i]+1 == inputDescending[i+1] {
+		if inputInt[i]-1 == inputInt[i+1] {
 			dscCounter++
 			dscNextIndexToCheck = i + 1
-		} else if inputDescending[i]+1 != inputDescending[i+1] && i == dscNextIndexToCheck {
+		} else if inputInt[i]-1 != inputInt[i+1] && i == dscNextIndexToCheck {
 			dscCounter = 0
 			dscNextIndexToCheck = 0
 		}
